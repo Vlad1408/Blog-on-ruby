@@ -1,0 +1,39 @@
+<% if @post.errors.any?%>
+<div class="alert alert-danger">
+  <h5><%= t('common.errors')%></h5>
+  <ul>
+   <%@post.comments.errors.full_messages.each do |msg|%>
+   <li><%=msg%></li>
+   <%end%>
+  </ul>
+</div>
+<%end%>
+<h2>Коментарі</h2>
+<div style="background-color:#e0fff4">
+ <%@post.comments.each do |comment|%>
+   <strong><%=comment.username%></strong>: <%=comment.body%><br>
+   <small>
+     <time>
+      <%=comment.created_at.to_date.strftime("%d %B, %Y")%>
+     </time>
+     <% if current_user!=nil%>
+     <% if current_user.admin? || current_user.email[0..current_user.email.index('@')-1]==comment.username%>
+     <%=link_to 'Видалити',post_comment_path(comment.post,comment),method: :delete,data:
+      {confirm:'Ви хочете видалити цей коментарій?'}%>
+     <%end%>
+     <%end%>
+   </small>
+  <br><br>
+ <%end%>
+</div>
+<% if user_signed_in?%>
+<h2>Додавання коментарів</h2>
+<%=form_for [@post, @post.comments.build] do |f| %>
+<div class="form-group">
+  <%=f.text_area :body ,class:'form-control'%>
+</div>
+<div class="form-group">
+  <%=f.submit 'Створити',class:'btn btn-primary'%>
+</div>
+<%end%>
+<%end%>

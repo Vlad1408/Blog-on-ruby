@@ -1,0 +1,32 @@
+ua:
+  common:
+    errors: 'При заповнені форми виникли помилки'
+    back: 'Назад'
+    edit: 'Редагувати'
+    delete: 'Видалити'
+    question: 'Ви хочете видалити цю статтю?'
+  will_paginate:
+    previous_label: '&larr; Попередня'
+    next_label: ' Наступна &rarr;'
+  posts:
+    index:
+      title: 'Статті'
+  admin:
+    posts:
+      new:
+       title: 'Нова стаття'
+      edit:
+        title: 'Редагування статті'
+      form:
+       submit:
+         '%{action} статтю'
+    categories:
+      index:
+        title: 'Категорії'
+      new:
+       title: 'Нова категорія'
+      edit:
+        title: 'Редагування категорії'
+      form:
+       submit:
+         '%{action} категорію'

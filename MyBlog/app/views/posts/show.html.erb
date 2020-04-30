@@ -1,0 +1,26 @@
+<%=render 'shared/breadcrumb',category:@post.category%>
+<article class="post" style="background-color:#e0fff4">
+  <section class="post-head">
+    <h1><%=@post.title%></h1>
+    <small>
+      <time>
+       <%=@post.created_at.to_date.strftime("%d %B, %Y")%>
+      </time>
+      <% if @post.category.present?%>
+        |
+        <%=link_to @post.category.name,@post.category%>
+      <%end%>
+      <% if user_signed_in? && current_user.admin?%>
+        |
+        <%=link_to t('common.edit'),edit_admin_post_path(@post)%>
+        |
+        <%=link_to t('common.delete'),admin_post_path(@post),method: :delete,data:
+        {confirm: t('common.question')}%>
+      <%end%>
+    </small>
+  </section>
+  <section class="post-body">
+    <%=@post.body%>
+  </section>
+</article>
+<%=render 'comments'%>
