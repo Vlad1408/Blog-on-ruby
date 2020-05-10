@@ -1,4 +1,2 @@
 # Blog-on-ruby
-To have access to all features log in with
-Login: admin@gmail.com
-Password: 123456
+To have access to all features set some user the value of field "admin"=true;
